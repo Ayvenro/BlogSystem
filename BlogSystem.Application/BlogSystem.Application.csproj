@@ -17,4 +17,9 @@
     <ProjectReference Include="..\BlogSystem.Domain\BlogSystem.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Blogs\Commands\CreateBlog\" />
+    <Folder Include="Features\Categories\Commands\" />
+  </ItemGroup>
+
 </Project>
