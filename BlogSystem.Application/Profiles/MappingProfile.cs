@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
-using BlogSystem.Application.Features.Blogs;
+using BlogSystem.Application.Features.Blogs.Queries.GetBlogDetail;
+using BlogSystem.Application.Features.Blogs.Queries.GetBlogsList;
 using BlogSystem.Domain.Entities;
 
 namespace BlogSystem.Application.Profiles
 {
-	public class MappingProfile : Profile
+    public class MappingProfile : Profile
 	{
         public MappingProfile()
         {
