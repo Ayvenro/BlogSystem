@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BlogSystem.Application.Features.Blogs;
+using BlogSystem.Application.Features.Blogs.Commands.CreateBlog;
 using BlogSystem.Application.Features.Blogs.Queries.GetBlogDetail;
 using BlogSystem.Application.Features.Categories.Queries.GetCategoriesList;
 using BlogSystem.Application.Features.Categories.Queries.GetCategoriesListWithBlogs;
@@ -16,6 +17,8 @@ namespace BlogSystem.Application.Profiles
             CreateMap<Category, CategoryDto>();
             CreateMap<Category, CategoryListVm>();
             CreateMap<Category, CategoryBlogListVm>();
+
+            CreateMap<Blog, CreateBlogCommandHandler>().ReverseMap();
         }
     }
 }
