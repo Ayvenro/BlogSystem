@@ -19,9 +19,26 @@ namespace BlogSystem.Application.Features.Categories.Commands
 		public async Task<CreateCategoryCommandResponse> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
 		{
 			var createCategoryCommandResponse = new CreateCategoryCommandResponse();
+			await ValidateRequest(request, createCategoryCommandResponse);
+			if (createCategoryCommandResponse.Success)
+			{
+				await CreateCategory(request, createCategoryCommandResponse);
+			}
+			return createCategoryCommandResponse;
+		}
+
+		private async Task CreateCategory(CreateCategoryCommand request, CreateCategoryCommandResponse createCategoryCommandResponse)
+		{
+			var category = new Category() { Name = request.Name };
+			category = await _categoryRepository.AddAsync(category);
+			createCategoryCommandResponse.Category = _mapper.Map<CreateCategoryDto>(category);
+		}
+
+		private async Task ValidateRequest(CreateCategoryCommand request, CreateCategoryCommandResponse createCategoryCommandResponse)
+		{
 			var validator = new CreateCategoryCommandValidator();
 			var validationResult = await validator.ValidateAsync(request);
-			if (validationResult.Errors.Count > 0) 
+			if (validationResult.Errors.Count > 0)
 			{
 				createCategoryCommandResponse.Success = false;
 				createCategoryCommandResponse.Errors = new List<string>();
@@ -30,13 +47,6 @@ namespace BlogSystem.Application.Features.Categories.Commands
 					createCategoryCommandResponse.Errors.Add(error.ErrorMessage);
 				}
 			}
-			if (createCategoryCommandResponse.Success)
-			{
-				var category = new Category() { Name = request.Name };
-				category = await _categoryRepository.AddAsync(category);
-				createCategoryCommandResponse.Category = _mapper.Map<CreateCategoryDto>(category);
-			}
-			return createCategoryCommandResponse;
 		}
 	}
 }
