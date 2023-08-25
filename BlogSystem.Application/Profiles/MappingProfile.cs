@@ -2,14 +2,14 @@
 using BlogSystem.Application.Features.Blogs;
 using BlogSystem.Application.Features.Blogs.Commands.CreateBlog;
 using BlogSystem.Application.Features.Blogs.Queries.GetBlogDetail;
-using BlogSystem.Application.Features.Categories.Commands;
+using BlogSystem.Application.Features.Categories.Commands.CreateCategory;
 using BlogSystem.Application.Features.Categories.Queries.GetCategoriesList;
 using BlogSystem.Application.Features.Categories.Queries.GetCategoriesListWithBlogs;
 using BlogSystem.Domain.Entities;
 
 namespace BlogSystem.Application.Profiles
 {
-	public class MappingProfile : Profile
+    public class MappingProfile : Profile
 	{
         public MappingProfile()
         {
