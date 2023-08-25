@@ -15,6 +15,7 @@ namespace BlogSystem.Application.Features.Blogs
 			_mapper = mapper;
 			_blogRepository = blogRepository;
         }
+
         public async Task<List<BlogListVm>> Handle(GetBlogsListQuery request, CancellationToken cancellationToken)
 		{
 			var allBlogs = (await _blogRepository.GetAllAsync()).OrderBy(x => x.CreatedDate);
