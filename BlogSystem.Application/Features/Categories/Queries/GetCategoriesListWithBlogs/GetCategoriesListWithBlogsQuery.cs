@@ -4,6 +4,5 @@ namespace BlogSystem.Application.Features.Categories.Queries.GetCategoriesListWi
 {
 	public class GetCategoriesListWithBlogsQuery : IRequest<List<CategoryBlogListVm>>
 	{
-        public bool IncludeHistory { get; set; }
     }
 }

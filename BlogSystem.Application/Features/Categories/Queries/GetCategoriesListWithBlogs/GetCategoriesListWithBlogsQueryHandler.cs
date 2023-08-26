@@ -17,7 +17,7 @@ namespace BlogSystem.Application.Features.Categories.Queries.GetCategoriesListWi
 
 		public async Task<List<CategoryBlogListVm>> Handle(GetCategoriesListWithBlogsQuery request, CancellationToken cancellationToken)
 		{
-			var categoriesList = await _categoryRepository.GetCategoriesWithBlogs(request.IncludeHistory);
+			var categoriesList = await _categoryRepository.GetCategoriesWithBlogs();
 			return _mapper.Map<List<CategoryBlogListVm>>(categoriesList);
 		}
 	}

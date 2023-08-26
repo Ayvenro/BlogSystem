@@ -4,6 +4,6 @@ namespace BlogSystem.Application.Contracts.Persistence
 {
 	public interface ICategoryRepository : IGenericAsyncRepository<Category>
 	{
-		Task<List<Category>> GetCategoriesWithBlogs(bool includePassedBlogs);
+		Task<List<Category>> GetCategoriesWithBlogs();
 	}
 }
