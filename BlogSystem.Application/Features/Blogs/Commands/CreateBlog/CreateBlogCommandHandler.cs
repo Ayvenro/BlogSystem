@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using BlogSystem.Application.Contracts.Infrastructure;
 using BlogSystem.Application.Contracts.Persistence;
+using BlogSystem.Application.Models.Mail;
 using BlogSystem.Domain.Entities;
 using MediatR;
 
@@ -9,11 +11,13 @@ namespace BlogSystem.Application.Features.Blogs.Commands.CreateBlog
 	{
 		private readonly IBlogRepository _blogRepository;
 		private readonly IMapper _mapper;
+		private readonly IEmailService _emailService;
 
-		public CreateBlogCommandHandler(IBlogRepository blogRepository, IMapper mapper)
+		public CreateBlogCommandHandler(IBlogRepository blogRepository, IMapper mapper, IEmailService emailService)
 		{
 			_blogRepository = blogRepository;
 			_mapper = mapper;
+			_emailService = emailService;
 		}
 
 		public async Task<Guid> Handle(CreateBlogCommand request, CancellationToken cancellationToken)
@@ -21,6 +25,16 @@ namespace BlogSystem.Application.Features.Blogs.Commands.CreateBlog
 			var @blog = _mapper.Map<Blog>(request);
 			await ValidateRequest(request);
 			@blog = await _blogRepository.AddAsync(@blog);
+			var email = new Email { To = "ayvennro.d@gmail.com", Body = $"A new event was created: {request}", 
+				Subject = "A new event was created" };
+			try
+			{
+				await _emailService.SendEmailAsync(email);
+			} 
+			catch (Exception ex)
+			{
+				// this shouldn't stop the API from doing else so this can be logged
+			}
 			return @blog.Id;
 		}
 
