@@ -16,6 +16,7 @@ namespace BlogSystem.Application.Profiles
             CreateMap<Blog, BlogListVm>().ReverseMap();
             CreateMap<Blog, BlogDetailVm>().ReverseMap();
             CreateMap<Category, CategoryDto>();
+            CreateMap<Blog, CategoryBlogDto>();
             CreateMap<Category, CategoryListVm>();
             CreateMap<Category, CategoryBlogListVm>();
             CreateMap<Category, CreateCategoryDto>();
