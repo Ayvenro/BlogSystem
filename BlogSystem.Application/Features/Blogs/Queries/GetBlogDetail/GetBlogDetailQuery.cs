@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace BlogSystem.Application.Features.Blogs
+namespace BlogSystem.Application.Features.Blogs.Queries.GetBlogDetail
 {
 	public class GetBlogDetailQuery : IRequest<BlogDetailVm>
 	{

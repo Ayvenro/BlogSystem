@@ -3,7 +3,7 @@ using BlogSystem.Application.Contracts.Persistence;
 using BlogSystem.Domain.Entities;
 using MediatR;
 
-namespace BlogSystem.Application.Features.Blogs
+namespace BlogSystem.Application.Features.Blogs.Queries.GetBlogDetail
 {
 	public class GetBlogDetailHandlerQuery : IRequestHandler<GetBlogDetailQuery, BlogDetailVm>
 	{
