@@ -37,8 +37,8 @@ namespace BlogSystem.Api.Controllers
 		[HttpPost(Name = "AddBlog")]
 		public async Task<ActionResult<Guid>> Create([FromBody] CreateBlogCommand createBlogCommand)
 		{
-			var response = await _mediator.Send(createBlogCommand);
-			return Ok(response);
+			var id = await _mediator.Send(createBlogCommand);
+			return Ok(id);
 		}
 
 		[HttpPut(Name = "UpdateBlog")]
@@ -51,7 +51,7 @@ namespace BlogSystem.Api.Controllers
 			return NoContent();
 		}
 
-		[HttpDelete("{id}", Name = "UpdateBlog")]
+		[HttpDelete("{id}", Name = "DeleteBlog")]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesDefaultResponseType]
