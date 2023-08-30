@@ -1,7 +1,6 @@
 ﻿using BlogSystem.Application;
 using BlogSystem.Infrastructure;
 using BlogSystem.Persistance;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 

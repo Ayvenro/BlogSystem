@@ -7,10 +7,10 @@ namespace BlogSystem.Application.Features.Categories.Commands.CreateCategory
 {
     public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, CreateCategoryCommandResponse>
     {
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly IGenericAsyncRepository<Category> _categoryRepository;
         private readonly IMapper _mapper;
 
-        public CreateCategoryCommandHandler(ICategoryRepository categoryRepository, IMapper mapper)
+        public CreateCategoryCommandHandler(IGenericAsyncRepository<Category> categoryRepository, IMapper mapper)
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
