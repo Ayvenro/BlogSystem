@@ -1,4 +1,6 @@
-﻿using BlogSystem.Application;
+﻿using BlogSystem.Api.Services;
+using BlogSystem.Application;
+using BlogSystem.Application.Contracts;
 using BlogSystem.Infrastructure;
 using BlogSystem.Persistance;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +16,7 @@ namespace BlogSystem.Api
 			AddSwagger(builder.Services);
 			builder.Services.AddInfrastructureServices(builder.Configuration);
 			builder.Services.AddPersistanceServices(builder.Configuration);
+			builder.Services.AddScoped<ILoggedInUserService, LoggedInUserService>();	
 			builder.Services.AddControllers();
 			builder.Services.AddCors(options =>
 			{

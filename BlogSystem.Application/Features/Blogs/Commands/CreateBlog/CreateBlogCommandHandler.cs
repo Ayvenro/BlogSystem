@@ -9,11 +9,11 @@ namespace BlogSystem.Application.Features.Blogs.Commands.CreateBlog
 {
 	public class CreateBlogCommandHandler : IRequestHandler<CreateBlogCommand, Guid>
 	{
-		private readonly IBlogRepository _blogRepository;
+		private readonly IGenericAsyncRepository<Blog> _blogRepository;
 		private readonly IMapper _mapper;
 		private readonly IEmailService _emailService;
 
-		public CreateBlogCommandHandler(IBlogRepository blogRepository, IMapper mapper, IEmailService emailService)
+		public CreateBlogCommandHandler(IGenericAsyncRepository<Blog> blogRepository, IMapper mapper, IEmailService emailService)
 		{
 			_blogRepository = blogRepository;
 			_mapper = mapper;

@@ -7,7 +7,7 @@ using BlogSystem.Domain.Entities;
 using Moq;
 using Shouldly;
 
-namespace BlogSystem.Application.UnitTests.Blogs
+namespace BlogSystem.Application.UnitTests.Blogs.Queries
 {
     public class GetBlogsListQueryHandlerTests
     {

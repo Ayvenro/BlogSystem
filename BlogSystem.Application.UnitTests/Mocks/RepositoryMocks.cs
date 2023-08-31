@@ -73,7 +73,11 @@ namespace BlogSystem.Application.UnitTests.Mock
 			};
 			var mockBlogRepository = new Mock<IGenericAsyncRepository<Blog>>();
 			mockBlogRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(blogs);
-
+			mockBlogRepository.Setup(repo => repo.AddAsync(It.IsAny<Blog>())).ReturnsAsync((Blog blog) =>
+			{
+				blogs.Add(blog);
+				return blog;
+			});
 			return mockBlogRepository;
 		}
 	}

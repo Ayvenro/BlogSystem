@@ -1,4 +1,5 @@
-﻿using BlogSystem.Domain.Common;
+﻿using BlogSystem.Application.Contracts;
+using BlogSystem.Domain.Common;
 using BlogSystem.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,8 +7,14 @@ namespace BlogSystem.Persistance
 {
 	public class BlogSystemDbContext : DbContext
 	{
-		public BlogSystemDbContext(DbContextOptions options) : base(options)
+		private readonly ILoggedInUserService? _loggedInUserService;
+		public BlogSystemDbContext(DbContextOptions<BlogSystemDbContext> options) : base(options)
 		{
+		}
+
+		public BlogSystemDbContext(DbContextOptions<BlogSystemDbContext> options, ILoggedInUserService? loggedInUserService) : base(options)
+		{
+			_loggedInUserService = loggedInUserService;
 		}
 
 		public DbSet<Blog> Blogs { get; set; }
@@ -19,11 +26,14 @@ namespace BlogSystem.Persistance
 			{
 				switch (entry.State)
 				{
-					case EntityState.Modified:
-						entry.Entity.LastModifiedDate = DateTime.Now;
-						break;
 					case EntityState.Added:
 						entry.Entity.CreatedDate = DateTime.Now;
+						entry.Entity.CreatedBy = _loggedInUserService.UserId;
+
+						break;
+					case EntityState.Modified:
+						entry.Entity.LastModifiedDate = DateTime.Now;
+						entry.Entity.LastModifiedBy = _loggedInUserService.UserId;
 						break;
 				}
 			}
