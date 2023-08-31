@@ -2,7 +2,7 @@
 using BlogSystem.Application.Contracts.Persistence;
 using BlogSystem.Application.Features.Categories.Queries.GetCategoriesList;
 using BlogSystem.Application.Profiles;
-using BlogSystem.Application.UnitTests.Mocks;
+using BlogSystem.Application.UnitTests.Mock;
 using BlogSystem.Domain.Entities;
 using Moq;
 using Shouldly;
