@@ -18,6 +18,7 @@ namespace BlogSystem.Api
 			builder.Services.AddPersistanceServices(builder.Configuration);
 			builder.Services.AddScoped<ILoggedInUserService, LoggedInUserService>();	
 			builder.Services.AddControllers();
+			builder.Services.AddHttpContextAccessor();
 			builder.Services.AddCors(options =>
 			{
 				options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
